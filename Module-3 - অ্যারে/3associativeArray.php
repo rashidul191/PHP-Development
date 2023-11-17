@@ -35,7 +35,7 @@ foreach ($foods as $key => $value) {
     echo "\n $key = $value\n";
 }
 
-// other way ot find key and value of array.
+//another way to find the key and value of the array.
 $keys = array_keys($foods);
 $values = array_values($foods);
 print_r($keys);
