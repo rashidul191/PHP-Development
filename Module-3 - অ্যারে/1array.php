@@ -9,7 +9,7 @@ $numbers = [1, 2, 3, 4, 5];
 
 echo count($numbers) . "\n";
 
-// specific elements find from array
+// specific index element  find from array
 echo $numbers[2] . "\n \n";
 
 $arrayLength = count($numbers);
