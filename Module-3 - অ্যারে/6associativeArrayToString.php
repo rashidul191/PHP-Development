@@ -1,3 +1,7 @@
+
+
+
+
 <?php
 $students = array(
 
@@ -25,7 +29,7 @@ print_r($newStudents);
 // json
 
 $jsonData = json_encode($students);
-echo $jsonData. "\n";
+echo $jsonData . "\n";
 
 $newStudents2 = json_decode($jsonData, true);
 print_r($newStudents2);
