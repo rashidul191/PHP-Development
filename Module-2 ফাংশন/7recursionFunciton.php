@@ -5,7 +5,7 @@
     if($counter > $end){
         return;
     }
-    echo $counter. "\n";
+    echo $counter. "\n"; 
     $counter += $stepping;
     printNumber($counter, $end, $stepping);
  }

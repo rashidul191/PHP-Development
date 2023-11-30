@@ -6,7 +6,6 @@
 
 function fibonacci($old, $new, $start, $end)
 {
-
     if ($start > $end) {
         return;
     }

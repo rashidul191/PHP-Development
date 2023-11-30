@@ -12,3 +12,5 @@ $friends = ["rouf", "rakib", "rafiul"];
 $arrayToString = join(", ", $friends);
 
 echo "\n" . $arrayToString;
+
+

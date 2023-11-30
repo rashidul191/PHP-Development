@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Determines is the argument even or odd number.
+ * Determines if the argument even or odd number.
  */
 function isEven($n) // $n is here parameter
 {

@@ -10,5 +10,5 @@ function serve($food = "Tea", $numberOfItem = 1)
 
 $f = "Coffee";
 $n = 12;
-serve($f, $n);
+serve();
 // serve($n);
