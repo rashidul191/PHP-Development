@@ -27,7 +27,7 @@ $foods = [
 ];
 // associative array push both example are same.
 // $foods ["drinks"] = $foods["drinks"].", orange";
-$foods ["drinks"] .=", orange";
+$foods ["drinks"] .=",  ";
 
 print_r($foods);
 echo "\n \n";

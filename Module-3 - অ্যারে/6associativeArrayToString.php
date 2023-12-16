@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 $students = array(
 
@@ -23,11 +19,12 @@ echo "\n";
 // echo join(", ", $students);
 $serialize =  serialize($students);
 $newStudents = unserialize($serialize);
-
+print_r($serialize);
+echo "\n";
+echo "unserialize: ";
 print_r($newStudents);
 
 // json
-
 $jsonData = json_encode($students);
 echo $jsonData . "\n";
 

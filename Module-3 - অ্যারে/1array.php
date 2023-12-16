@@ -13,11 +13,11 @@ echo count($numbers) . "\n";
 echo $numbers[2] . "\n \n";
 
 $arrayLength = count($numbers);
-for ($i = 0; $i < $arrayLength; $i++) {
+for ($i = 0; $i < $arrayLength; $i++) { 
 
     echo $numbers[$i] . "\n";
 }
 
-for ($i = $arrayLength-1; $i >= 0; $i--) {
+for ($i = $arrayLength - 1; $i >= 0; $i--) {
     echo $numbers[$i] . "\n";
 }

@@ -1,16 +1,10 @@
 <?php
 
 // in this tutorial we will learn php string to array and array to string.
-$vegetable = "brinjal, brocolli, carrot, capsicam";
-$stringToArray = explode(", ", $vegetable);
 
+$friends = "Abdur Rouf,Md Rakibul Islam, Rashidul";
+
+// echo $friends;
+// $stringToArray = explode(",", $friends);
+$stringToArray = preg_split("/(, |,)/", $friends);
 print_r($stringToArray);
-
-
-$friends = ["rouf", "rakib", "rafiul"];
-
-$arrayToString = join(", ", $friends);
-
-echo "\n" . $arrayToString;
-
-
