@@ -1,13 +1,12 @@
 <?php
 $students = array(
-
     "fname" => "Rashidul",
     "lname" => "Islam",
     "age" => 25,
     "class" => 6,
     "section" => "A"
 );
-
+ 
 
 print_r($students);
 

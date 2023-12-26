@@ -16,11 +16,11 @@ print_r($names);
 
 // big to small
 $numbers = array(1, 44, 55, 2, 3, 7);
-// arsort($numbers);
+arsort($numbers);
 print_r($numbers);
 
 foreach ($numbers as $key => $number) {
 
-    echo "\n" . $key;
+    // echo "\n" . $key;
     // echo "\n" . $number;
 }
