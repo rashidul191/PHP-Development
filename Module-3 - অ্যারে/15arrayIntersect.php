@@ -12,8 +12,8 @@ $fruits2 = array("a" => "apple", "b" => "orange",  "c" => "lemon", "g" => "malta
 $commonN = array_intersect($numbers1, $numbers2);
 // $commonF = array_intersect($fruits1, $fruits2);
 $commonF = array_intersect_assoc($fruits1, $fruits2);
-print_r($commonN);
-print_r($commonF);
+// print_r($commonN);
+// print_r($commonF);
 echo "\n";
 
 
@@ -22,4 +22,18 @@ $differentN = array_diff($numbers1, $numbers2);
 // $differentF = array_diff($fruits1, $fruits2);
 $differentF = array_diff_assoc($fruits1, $fruits2);
 print_r($differentN);
-print_r($differentF);
+// print_r($differentF);
+
+
+$myArray = array(1, 2, 2, 2, 22, 3, 4, 44, 5, 55, 5);
+// print_r($myArray);
+$newArray = [];
+
+for ($i = 0; $i < count($myArray); $i++) {
+    $element = $myArray[$i];
+    if (!in_array($element, $newArray)) {
+        array_push($newArray, $element);
+    }
+}
+
+print_r($newArray);
