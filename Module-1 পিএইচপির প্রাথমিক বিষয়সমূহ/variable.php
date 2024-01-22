@@ -18,3 +18,10 @@ $word = "age";
 echo $$word;
 
 echo "hello {$name} \n {$age} {$word}";
+
+echo "\n";
+
+$numbers = 15;
+
+// echo $numbers === 12 ? "yes" : "no";
+echo $numbers === 12 ?? "false";
