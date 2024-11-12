@@ -14,7 +14,7 @@
 <body>
     <section class="container">
         <div>
-            <h3>Request Method</h3>
+            <h3>Request</h3>
             <p>First Name: <?php if (isset($_REQUEST["fname"]) && !empty($_REQUEST["fname"])) :
                                 echo $_REQUEST['fname'];
                             else :
@@ -27,6 +27,17 @@
                             endif; ?> </p>
 
         </div>
+    </section>
+
+    <section class="container">
+        <?php
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            echo "server result fname: ", $_POST["fname"];
+            echo "server result lname: ", $_POST["lname"];
+        }
+        ?>
+
     </section>
     <section class="container">
         <div>
@@ -44,7 +55,7 @@
 
         </div>
         <div>
-            <h2>Our First Get Method Form</h2>
+            <h2>Our First "GET" Method Form</h2>
             <div>
                 <form method="GET">
                     <label for="fname">First Name</label>
@@ -74,7 +85,7 @@
 
         </div>
         <div>
-            <h2>Our First Post Method Form</h2>
+            <h2>Our First "POST" Method Form</h2>
             <div>
                 <form method="POST">
                     <label for="fname">First Name</label>
