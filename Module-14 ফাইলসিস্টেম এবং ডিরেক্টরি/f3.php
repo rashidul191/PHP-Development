@@ -1,5 +1,7 @@
 <?php
 
+// Delete Folder and File using Recursive way.
+
 mkdir("dir/d1/d2/d3", 0777, true);
 
 file_put_contents("dir/f.txt", "hello");
