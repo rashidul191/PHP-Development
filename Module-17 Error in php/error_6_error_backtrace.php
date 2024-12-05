@@ -20,7 +20,7 @@ function z($c)
     }
 
     // debug_print_backtrace();
-    debug_print_backtrace(0, 2);
+    debug_print_backtrace(0,2);
     // print_r(debug_backtrace()); // output: show array
 }
 
