@@ -1,3 +1,6 @@
+-- DataBase Table Show
+SHOW TABLES;
+
 -- Create Data Table
 CREATE TABLE table_name(
     -- column_name data_type(size),
@@ -8,7 +11,7 @@ CREATE TABLE table_name(
 
 );
 
--- Remove Table name
+-- Rename Table Name
 RENAME TABLE old_table_name TO new_table_name;
 
 -- Delete Table 
