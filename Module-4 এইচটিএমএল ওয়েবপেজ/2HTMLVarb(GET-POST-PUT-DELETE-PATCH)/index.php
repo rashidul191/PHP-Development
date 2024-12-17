@@ -73,7 +73,7 @@
         <div>
             <h3>Post Method</h3>
             <p>First Name: <?php if (isset($_POST["fname"]) && !empty($_POST["fname"])) :
-                                echo $_POST['fname'];
+                                 echo $_POST['fname'];
                             else :
                                 echo "fname coming soon...";
                             endif; ?> </p>
