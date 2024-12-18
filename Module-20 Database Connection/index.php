@@ -54,7 +54,7 @@ $dbConnection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
                             <td><?php echo $dataC['id'] ?></td>
                             <td><?php echo $dataC['name'] ?></td>
                             <td><?php echo $dataC['age'] ?></td>
-                            <td><a href="#">Delete</a> | <a href="#">Complete</a></td>
+                            <td><a class="delete" data-taskid="<?php echo $dataC['id'] ?>" href="#">Delete</a> | <a class="incomplete" data-taskid="<?php echo $dataC['id'] ?>" href="#">Make Incomplete</a> </td>
                         </tr>
 
                     <?php
@@ -99,7 +99,7 @@ $dbConnection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
                             <td><?php echo $data['id'] ?></td>
                             <td><?php echo $data['name'] ?></td>
                             <td><?php echo $data['age'] ?></td>
-                            <td><a href="#">Delete</a> | <a href="#">Complete</a></td>
+                            <td><a class="delete" data-taskid="<?php echo $data['id'] ?>" href="#">Delete</a> | <a class="complete" data-taskid="<?php echo $data['id'] ?>" href="#">Complete</a></td>
                         </tr>
 
                     <?php
@@ -154,6 +154,55 @@ $dbConnection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         </div>
     </section>
 
+    <!-- completeTask hidden from start  -->
+    <form action="tasks.php" method="post" id="completeTask">
+        <input type="hidden" name="taskid" id="taskid">
+        <input type="hidden" name="action" id="caction" value="complete">
+    </form>
+    <!-- completeTask hidden from end  -->
+
+    <!-- deleteTask hidden from start  -->
+    <form action="tasks.php" method="post" id="deleteTask">
+        <input type="hidden" name="deleteid" id="deleteid">
+        <input type="hidden" name="action" id="daction" value="delete">
+    </form>
+    <!-- deleteTask hidden from end  -->
+
+    <!-- incompleteTask hidden from start  -->
+    <form action="tasks.php" method="post" id="incompleteTask">
+        <input type="hidden" name="incompleteid" id="incompleteid">
+        <input type="hidden" name="action" id="inaction" value="incomplete">
+    </form>
+    <!-- incompleteTask hidden from end  -->
+
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+    <script>
+        ;
+        (function($) {
+            $(document).ready(function() {
+                $(".complete").on("click", function() {
+                    var id = $(this).data("taskid");
+
+                    $("#taskid").val(id);
+                    $("#completeTask").submit();
+                });
+
+                $(".delete").on("click", function() {
+                    var deleted = confirm("Are You Delete Data ??");
+                    if (deleted) {
+                        var id = $(this).data("taskid");
+                        $("#deleteid").val(id);
+                        $("#deleteTask").submit();
+                    }
+                });
+                $(".incomplete").on("click", function() {
+                    var id = $(this).data("taskid");
+                    $("#incompleteid").val(id);
+                    $("#incompleteTask").submit();
+                });
+            })
+        }(jQuery));
+    </script>
 </body>
 
 </html>

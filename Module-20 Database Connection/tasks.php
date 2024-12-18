@@ -27,6 +27,31 @@ if (!$dbConnection) {
                     mysqli_close($dbConnection);
                 }
             }
+        } else if ("complete" == $action) {
+
+            $taskId = $_POST['taskid'];
+            if ($taskId) {
+                $query = "UPDATE " . DB_TABLE . " SET complate = 1 WHERE id = " . $taskId . " LIMIT 1";
+                $updateData = mysqli_query($dbConnection, $query);
+            }
+            header("Location: index.php");
+        } else if ("delete" == $action) {
+            $deleteid = $_POST['deleteid'];
+            // echo $deleteid;
+
+            if ($deleteid) {
+                $query = "DELETE FROM " . DB_TABLE . " WHERE id = {$deleteid}";
+                $updateData = mysqli_query($dbConnection, $query);
+                header("Location: index.php");
+            }
+        } else if ("incomplete" == $action) {
+            $incompleteId = $_POST["incompleteid"];
+            // echo $incompleteId;
+            if ($incompleteId) {
+                $query = "UPDATE " . DB_TABLE . " SET complate = 0 WHERE id = " . $incompleteId . " LIMIT 1";
+                $updateData = mysqli_query($dbConnection, $query);
+            }
+            header("Location: index.php");
         }
     }
 }
