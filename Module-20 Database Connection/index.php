@@ -76,38 +76,48 @@ $dbConnection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         ?>
 
             <h3>Upcoming Tasks</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Action</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <?php
-
-                    while ($data = mysqli_fetch_assoc($getData)):
-                    ?>
-
+            <form action="tasks.php" method="POST">
+                <table>
+                    <thead>
                         <tr>
-                            <td><input type="checkbox" name="check" id="check" value="<?php echo $data['id'] ?>"></td>
-                            <td><?php echo $data['id'] ?></td>
-                            <td><?php echo $data['name'] ?></td>
-                            <td><?php echo $data['age'] ?></td>
-                            <td><a class="delete" data-taskid="<?php echo $data['id'] ?>" href="#">Delete</a> | <a class="complete" data-taskid="<?php echo $data['id'] ?>" href="#">Complete</a></td>
+                            <th></th>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Action</th>
+
                         </tr>
+                    </thead>
+                    <tbody>
 
-                    <?php
-                    endwhile;
-                    ?>
+                        <?php
 
-                </tbody>
-            </table>
+                        while ($data = mysqli_fetch_assoc($getData)):
+                        ?>
+
+                            <tr>
+                                <td><input type="checkbox" name="taskids[]" id="check" value="<?php echo $data['id'] ?>"></td>
+                                <td><?php echo $data['id'] ?></td>
+                                <td><?php echo $data['name'] ?></td>
+                                <td><?php echo $data['age'] ?></td>
+                                <td><a class="delete" data-taskid="<?php echo $data['id'] ?>" href="#">Delete</a> | <a class="complete" data-taskid="<?php echo $data['id'] ?>" href="#">Complete</a></td>
+                            </tr>
+
+                        <?php
+                        endwhile;
+                        ?>
+
+                    </tbody>
+                </table>
+                <div style="width: 200px;">
+                    <select name="action" id="bulkaction">
+                        <option value="0">With Selected</option>
+                        <option value="bulkdelete">Delete</option>
+                        <option value="bulkcomplete">Complete</option>
+                    </select>
+                    <input type="submit" id="bulksubmit" value="Submit">
+            </form>
+            </div>
 
         <?php
         else:
@@ -116,15 +126,7 @@ $dbConnection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         endif;
         ?>
 
-        <div style="width: 200px;">
-            <form action="#">
-                <select name="" id="">
-                    <option value="">Bulk Delete</option>
-                    <option value="">Bulk Delete</option>
-                </select>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
+
     </section>
 
 
@@ -199,6 +201,13 @@ $dbConnection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
                     var id = $(this).data("taskid");
                     $("#incompleteid").val(id);
                     $("#incompleteTask").submit();
+                });
+                $("#bulksubmit").on("click", function() {
+                    if ($("#bulkaction").val() == "bulkdelete") {
+                        if (!confirm("Are you delete data??")) {
+                            return false;
+                        }
+                    }
                 });
             })
         }(jQuery));

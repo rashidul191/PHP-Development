@@ -49,9 +49,32 @@ if (!$dbConnection) {
             // echo $incompleteId;
             if ($incompleteId) {
                 $query = "UPDATE " . DB_TABLE . " SET complate = 0 WHERE id = " . $incompleteId . " LIMIT 1";
-                $updateData = mysqli_query($dbConnection, $query);
+                mysqli_query($dbConnection, $query);
             }
             header("Location: index.php");
+        } else if ('bulkcomplete' == $action) {
+            $taskids = $_POST['taskids'];
+            if ($taskids) {
+                $_taskids = join(",", $taskids);
+                // print_r($_taskids);
+                $dbTableName = DB_TABLE;
+                $query = "UPDATE {$dbTableName} SET complate = 1 WHERE id IN ({$_taskids})";
+                mysqli_query($dbConnection, $query);
+                header("Location: index.php");
+            }
+        } else if ('bulkdelete' == $action) {
+            $taskids = $_POST['taskids'];
+            if ($taskids) {
+                $_taskids = join(",", $taskids);
+                // print_r($_taskids);
+                $dbTableName = DB_TABLE;
+                $query = "DELETE FROM {$dbTableName} WHERE id IN ({$_taskids})";
+                // print_r($query);
+                mysqli_query($dbConnection, $query);
+                header("Location: index.php");
+            }
         }
     }
 }
+
+mysqli_close($dbConnection);
