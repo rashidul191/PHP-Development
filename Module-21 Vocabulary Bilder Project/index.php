@@ -1,5 +1,17 @@
 <?php
+session_start();
+$_user_id = $_SESSION['id'] ?? 0;
+
+// echo $_user_id;
+
+if ($_user_id) {
+
+    header("Location: words.php");
+}
+
 include_once "function.php";
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

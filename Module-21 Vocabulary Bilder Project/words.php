@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+$_user_id = $_SESSION['id'] ?? 0;
+if (!$_user_id) {
+    header("Location: index.php");
+    exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +22,58 @@
 
 <body>
 
-    <section>
+    <section class="container">
         <div class="row">
-            <div class="column">
-                <p>menu here..</p>
+            <div class="column" style="background-color: #e5e5e5;">
+                <div>
+                    <h4>Menu</h4>
+                    <a href="#">All Words</a><br><br>
+                    <a href="#">Add New Word</a><br><br>
+                    <a href="logout.php">Logout</a><br>
+                </div>
             </div>
             <div class="column column-75">
-                <p>words here...</p>
+                <div class="row">
+                    <div class="column">
+                        <form action="#">
+                            <select name="" id="">
+                                <option value="#">All Words</option>
+                                <option value="A">A</option>
+                                <option value="D">B</option>
+                                <option value="C">C</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="column">
+                        <form action="#">
+                            <input type="search" name="" id="" placeholder="Search Here">
+                        </form>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Definition</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Stephen Curry</td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, quod?</td>
+
+                            </tr>
+                            <tr>
+                                <td>Klay Thompson</td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, quod?</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
