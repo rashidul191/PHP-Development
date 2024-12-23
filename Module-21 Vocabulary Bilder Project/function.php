@@ -1,5 +1,14 @@
 <?php
 
+include_once 'config.php';
+
+$dbConnection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+$action = $_POST['action'] ?? "";
+$statusCode = 0;
+if (!$dbConnection) {
+    throw new Exception("DataBase Connection Some Think Wrong!!");
+}
+
 function getStatusMessage($statusCode = 0)
 {
     $status = array(
@@ -12,4 +21,17 @@ function getStatusMessage($statusCode = 0)
     );
 
     return $status[$statusCode];
+}
+
+function  getWords($user_id)
+{
+    global $dbConnection;
+    $query = "SELECT * FROM words WHERE user_id = '{$user_id}'";
+    $result = mysqli_query($dbConnection, $query);
+    $data = [];
+    while ($_data = mysqli_fetch_assoc($result)) {
+        array_push($data, $_data);
+    }
+
+    return $data;
 }

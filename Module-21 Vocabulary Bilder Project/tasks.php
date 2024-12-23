@@ -49,6 +49,17 @@ if (!$dbConnection) {
         } else {
             $statusCode = 2;
         }
-        // header("Location: index.php?status={$statusCode}");
+        header("Location: index.php?status={$statusCode}");
+    } else if ("addword" == $action) {
+        $word = $_REQUEST['word'] ?? '';
+        $meaning = $_REQUEST['meaning'] ?? '';
+        $user_id = $_SESSION['id'] ?? 0;
+        if ($word && $meaning && $user_id) {
+            $query = "INSERT INTO words (user_id, word, meaning) VALUES ('{$user_id}','{$word}','{$meaning}')";
+
+            mysqli_query($dbConnection, $query);
+            // $dbConnection-> query($query);
+        }
+        header("Location: words.php");
     }
 }

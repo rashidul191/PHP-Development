@@ -1,11 +1,15 @@
 <?php
 
 session_start();
+
+require_once "function.php";
+
 $_user_id = $_SESSION['id'] ?? 0;
 if (!$_user_id) {
     header("Location: index.php");
     exit;
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -27,56 +31,86 @@ if (!$_user_id) {
             <div class="column" style="background-color: #e5e5e5;">
                 <div>
                     <h4>Menu</h4>
-                    <a href="#">All Words</a><br><br>
-                    <a href="#">Add New Word</a><br><br>
+                    <a href="#" class="menu-item" data-target="words">All Words</a><br><br>
+                    <a href="#" class="menu-item" data-target="wordform">Add New Word</a><br><br>
                     <a href="logout.php">Logout</a><br>
                 </div>
             </div>
             <div class="column column-75">
-                <div class="row">
-                    <div class="column">
-                        <form action="#">
-                            <select name="" id="">
-                                <option value="#">All Words</option>
-                                <option value="A">A</option>
-                                <option value="D">B</option>
-                                <option value="C">C</option>
-                            </select>
-                        </form>
+
+                <div class="wordsc helement" id="words">
+                    <div class="row">
+                        <div class="column">
+                            <form action="#">
+                                <select name="" id="">
+                                    <option value="#">All Words</option>
+                                    <option value="A">A</option>
+                                    <option value="D">B</option>
+                                    <option value="C">C</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div class="column">
+                            <form action="#">
+                                <input type="search" name="" id="" placeholder="Search Here">
+                            </form>
+                        </div>
                     </div>
-                    <div class="column">
-                        <form action="#">
-                            <input type="search" name="" id="" placeholder="Search Here">
-                        </form>
+                    <hr>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Word</th>
+                                    <th>Definition</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $getWords = getWords($_user_id);
+                                if ($getWords):
+                                    foreach ($getWords as $getWord):
+                                ?>
+                                        <tr>
+                                            <td><?php echo $getWord['word'] ?></td>
+                                            <td><?php echo $getWord['meaning'] ?></td>
+
+                                        </tr>
+                                <?php
+
+                                    endforeach;
+                                endif;
+                                ?>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <hr>
-                <div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Word</th>
-                                <th>Definition</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Stephen Curry</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, quod?</td>
 
-                            </tr>
-                            <tr>
-                                <td>Klay Thompson</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, quod?</td>
 
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="formc helement" id="wordform" style="display: none;">
+                    <form action="tasks.php" method="POST" id="">
+                        <h4>Add New Word</h4>
+                        <fieldset>
+                            <label for="word">Word</label>
+                            <input type="text" name="word" id="word" placeholder="word">
+                            <label for="meaning">Meaning</label>
+                            <textarea name="meaning" id="meaning" placeholder="Meaning" rows="5"></textarea>
+                            <input type="hidden" name="action" value="addword">
+                            <input type="submit" value="Add Word">
+                        </fieldset>
+                    </form>
                 </div>
+
             </div>
         </div>
     </section>
+
+
+
+
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
     <script src="script.js"></script>
 </body>
