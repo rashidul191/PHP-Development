@@ -31,24 +31,25 @@ if (!$_user_id) {
             <div class="column" style="background-color: #e5e5e5;">
                 <div>
                     <h4>Menu</h4>
-                    <a href="#" class="menu-item" data-target="words">All Words</a><br><br>
+                    <a href="#" class="menu-item" data-target="wordsc">All Words</a><br><br>
                     <a href="#" class="menu-item" data-target="wordform">Add New Word</a><br><br>
                     <a href="logout.php">Logout</a><br>
                 </div>
             </div>
             <div class="column column-75">
 
-                <div class="wordsc helement" id="words">
+                <div class="wordsc helement" id="wordsc">
                     <div class="row">
                         <div class="column">
-                            <form action="#">
-                                <select name="" id="">
-                                    <option value="#">All Words</option>
+                            <div class="alphabets">
+                                <select name="" id="alphabets">
+                                    <option value="all">All Words</option>
                                     <option value="A">A</option>
-                                    <option value="D">B</option>
+                                    <option value="B">B</option>
                                     <option value="C">C</option>
+                                    <option value="D">D</option>
                                 </select>
-                            </form>
+                            </div>
                         </div>
                         <div class="column">
                             <form action="#">
@@ -58,7 +59,7 @@ if (!$_user_id) {
                     </div>
                     <hr>
                     <div>
-                        <table>
+                        <table class="words">
                             <thead>
                                 <tr>
                                     <th>Word</th>

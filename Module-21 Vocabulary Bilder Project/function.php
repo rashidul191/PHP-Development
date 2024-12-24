@@ -26,7 +26,7 @@ function getStatusMessage($statusCode = 0)
 function  getWords($user_id)
 {
     global $dbConnection;
-    $query = "SELECT * FROM words WHERE user_id = '{$user_id}'";
+    $query = "SELECT * FROM words WHERE user_id = '{$user_id}' ORDER BY word";
     $result = mysqli_query($dbConnection, $query);
     $data = [];
     while ($_data = mysqli_fetch_assoc($result)) {

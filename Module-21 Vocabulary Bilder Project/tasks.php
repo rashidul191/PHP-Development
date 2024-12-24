@@ -56,7 +56,6 @@ if (!$dbConnection) {
         $user_id = $_SESSION['id'] ?? 0;
         if ($word && $meaning && $user_id) {
             $query = "INSERT INTO words (user_id, word, meaning) VALUES ('{$user_id}','{$word}','{$meaning}')";
-
             mysqli_query($dbConnection, $query);
             // $dbConnection-> query($query);
         }

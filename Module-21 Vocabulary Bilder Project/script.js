@@ -15,4 +15,21 @@
     var target = "#" + $(this).data("target");
     $(target).show();
   });
+
+  $("#alphabets").on("change", function () {
+    const char = $(this).val();
+    if ("all" == char) {
+      $(".words tr").show();
+      return true;
+    }
+    $(".words tr:gt(0)").hide();
+
+    $(".words td")
+      .filter(function () {
+        const findWord = $(this).text().indexOf(char) == 0;
+        return findWord;
+      })
+      .parent()
+      .show();
+  });
 })(jQuery);
