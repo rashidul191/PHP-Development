@@ -31,7 +31,7 @@ if (!$_user_id) {
             <div class="column" style="background-color: #e5e5e5;">
                 <div>
                     <h4>Menu</h4>
-                    <a href="#" class="menu-item" data-target="wordsc">All Words</a><br><br>
+                    <a href="words.php" class="menu-item" data-target="wordsc">All Words</a><br><br>
                     <a href="#" class="menu-item" data-target="wordform">Add New Word</a><br><br>
                     <a href="logout.php">Logout</a><br>
                 </div>
@@ -52,8 +52,9 @@ if (!$_user_id) {
                             </div>
                         </div>
                         <div class="column">
-                            <form action="#">
-                                <input type="search" name="" id="" placeholder="Search Here">
+                            <form action="#" method="POST">
+                                <input type="search" name="searchword" id="" placeholder="Search Here">
+                                <input type="submit" name="search" value="search">
                             </form>
                         </div>
                     </div>
@@ -69,7 +70,13 @@ if (!$_user_id) {
                             </thead>
                             <tbody>
                                 <?php
-                                $getWords = getWords($_user_id);
+
+                                if (isset($_POST['search'])) {
+                                    $searchTest = $_POST['searchword'];
+                                    $getWords = getWords($_user_id, $searchTest);
+                                } else {
+                                    $getWords = getWords($_user_id);
+                                }
                                 if ($getWords):
                                     foreach ($getWords as $getWord):
                                 ?>

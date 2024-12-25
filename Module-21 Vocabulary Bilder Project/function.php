@@ -23,10 +23,16 @@ function getStatusMessage($statusCode = 0)
     return $status[$statusCode];
 }
 
-function  getWords($user_id)
+function  getWords($user_id, $search = null)
 {
     global $dbConnection;
-    $query = "SELECT * FROM words WHERE user_id = '{$user_id}' ORDER BY word";
+    if ($search) {
+        // $query = "SELECT * FROM words WHERE user_id = '{$user_id}' AND word LIKE '%{$search}' ORDER BY word";
+        // $query = "SELECT * FROM words WHERE user_id = '{$user_id}' AND word LIKE '%{$search}%' ORDER BY word";
+        $query = "SELECT * FROM words WHERE user_id = '{$user_id}' AND word LIKE '{$search}%' ORDER BY word";
+    } else {
+        $query = "SELECT * FROM words WHERE user_id = '{$user_id}' ORDER BY word";
+    }
     $result = mysqli_query($dbConnection, $query);
     $data = [];
     while ($_data = mysqli_fetch_assoc($result)) {
