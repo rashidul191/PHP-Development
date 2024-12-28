@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Get</title>
+</head>
+
+<body>
+
+    <div>
+        <h4>Trigger</h4>
+        <form action="GET">
+            <input type="button" id="send" value="Send Data">
+        </form>
+        <br>
+    </div>
+
+    <div>
+        <h3>Output Show: </h3>
+        <pre id="result"></pre>
+    </div>
+
+    <script>
+        function sendData() {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "data-get.php?foo=bar&hello=world", true);
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+
+                    let response = JSON.parse(this.responseText);
+
+                    document.getElementById("result").innerText = this.responseText;
+                    // console.log(response); // Logs as an object
+                }
+            }
+            xhr.send();
+        }
+
+        document.getElementById("send").addEventListener("click", function () {
+            sendData();
+        });
+    </script>
+
+</body>
+
+</html>
