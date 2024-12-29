@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Get</title>
+</head>
+
+<body>
+
+    <div>
+        <h4>Trigger</h4>
+        <form action="GET">
+            <input type="button" id="send" value="Send Data">
+        </form>
+        <br>
+    </div>
+
+    <div>
+        <h3>Output Show: </h3>
+        <pre id="result"></pre>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+
+        // jQuery Using
+        function sendDataUsingJquery() {
+            let params = {
+                "key1": "value1",
+                "key2": "value2",
+                "key3": "value3",
+                "key4": "value4",
+                "key5": "value5 & More",
+            }
+            // AJAX
+            // $.ajax({
+            //     "method": "POST",
+            //     "url": "data-post.php",
+            //     "data": params,
+
+            // }).done( (response)=> {
+            //     $("#result").html(response);
+            // });
+            
+            //Only POST
+            // $.post("data-post.php", params, (response) => {
+            //     $("#result").html(response);
+            // })
+
+            // Only GET
+            $.get("data-get.php", params, (response) => {
+                $("#result").html(response);
+            })
+        }
+
+
+        document.getElementById("send").addEventListener("click", function () {
+
+            // console.log(formatParams(params));
+            sendDataUsingJquery();
+        });
+    </script>
+
+</body>
+
+</html>

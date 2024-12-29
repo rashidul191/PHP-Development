@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Get</title>
+</head>
+
+<body>
+
+    <div>
+        <h4>Trigger</h4>
+        <form action="GET">
+            <input type="button" id="send" value="Send Data">
+        </form>
+        <br>
+    </div>
+
+    <div>
+        <h3>Output Show: </h3>
+        <pre id="result"></pre>
+    </div>
+
+    <script>
+
+
+        function formatParams(data) {
+            return new URLSearchParams(data).toString();
+            // return Object.keys(data).map((key) => {
+            //     return key + "=" + encodeURIComponent(data[key]);
+            // }).join("&");
+        }
+
+        function sendData() {
+            let params = {
+                "key1": "value1",
+                "key2": "value2",
+                "key3": "value3",
+                "key4": "value4",
+                "key5": "value5 & More",
+            }
+            const queryString = formatParams(params)
+
+            let xhr = new XMLHttpRequest();
+            // xhr.open("GET", `data-get.php?${queryString}`, true);
+            // xhr.open("PUT", `data-get.php?`, true);
+            xhr.open("POST", `data-post.php`, true);
+            xhr.setRequestHeader(
+                "Content-Type", "application/x-www-form-urlencoded"
+            );
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    let response = JSON.parse(this.responseText);
+                    document.getElementById("result").innerText = this.responseText;
+                    // console.log(response); // Logs as an object
+                }
+            }
+            xhr.send(queryString);
+        }
+
+
+        document.getElementById("send").addEventListener("click", function () {
+
+            // console.log(formatParams(params));
+            sendData();
+        });
+    </script>
+
+</body>
+
+</html>

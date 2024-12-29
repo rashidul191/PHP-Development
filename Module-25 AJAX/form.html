@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Get</title>
+</head>
+
+<body>
+    <form action="#" method="POST">
+        <h2>Sign Up</h2>
+        <input type="text" name="fname" id="fname" placeholder="First Name"> <br><br>
+        <input type="text" name="lname" id="lname" placeholder="Last Name"><br><br>
+        <input type="email" name="email" id="email" placeholder="E-main" required><br><br>
+        <input type="password" name="password" id="password" placeholder="Password" required><br><br>
+        <input type="text" name="number" id="number" placeholder="Phone Number" required><br><br>
+        <input type="checkbox" name="subscribe" id="subscribe">
+        <label for="subscribe">Subscribe To Our Newsletter</label><br><br>
+        <input type="submit" value="Sign In" id="sign-in">
+    </form>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        (function ($) {
+            $(document).ready(function () {
+                $("#sign-in").on("click", function (e) {
+                    let params = {
+                        "fname": $("#fname").val(),
+                        "lname": $("#lname").val(),
+                        "email": $("#email").val(),
+                        "password": $("#password").val(),
+                        "number": $("#number").val(),
+                        "subscribe": $("#subscribe").val(),
+                    }
+
+                    $.ajax({
+                        "method": "POST",
+                        "url": "data-post.php",
+                        "data": params,
+                    }).done((res) => {
+                        console.log(res);
+
+                    })
+                    return false;
+                })
+            })
+        })(jQuery)
+    </script>
+
+</body>
+
+</html>
